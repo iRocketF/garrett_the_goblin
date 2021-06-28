@@ -1026,6 +1026,7 @@ MonoBehaviour:
   target: {fileID: 171554037}
   smoothSpeed: 10
   offSet: {x: 0, y: 2.5, z: -10}
+  forwardOffSet: 4
 --- !u!1 &1511556601
 GameObject:
   m_ObjectHideFlags: 0
