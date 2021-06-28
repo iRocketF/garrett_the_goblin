@@ -26,6 +26,11 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
+        UpdateMovement();
+    }
+
+    void UpdateMovement()
+    {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
@@ -47,11 +52,5 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(groundCheck.position, groundDistance);
     }
 }
