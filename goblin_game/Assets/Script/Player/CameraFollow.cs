@@ -16,11 +16,13 @@ public class CameraFollow : MonoBehaviour
     {
         Vector3 desiredPosition = target.position + offSet;
 
-        desiredPosition.x += forwardOffSet * Input.GetAxis("Horizontal");
+        float inputMovement = Input.GetAxis("Horizontal");
 
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+        desiredPosition.x += forwardOffSet * inputMovement;
+        
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * (Time.deltaTime));
         transform.position = smoothedPosition;
 
-        //transform.LookAt(target);
+        //transform.LookAt(target.position);
     }
 }
