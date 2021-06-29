@@ -15,8 +15,11 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
+    private Vector3 move;
     private Vector3 velocity;
     private bool isGrounded;
+
+    public float debug;
 
     void Update()
     {
@@ -34,8 +37,17 @@ public class PlayerMovement : MonoBehaviour
 
         float x = Input.GetAxis("Horizontal");
 
-        Vector3 move = transform.right * x;
-
+        if (x > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 90, 0);
+            move = transform.forward * x;
+        }   
+        else if (x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, -90, 0);
+            move = -transform.forward * x;
+        }
+            
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
