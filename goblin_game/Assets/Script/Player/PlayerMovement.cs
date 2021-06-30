@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float debug;
 
+    // Wall slide
     private bool isTouchingFront;
     public Transform frontCheck;
     private bool wallSliding;
@@ -28,6 +29,12 @@ public class PlayerMovement : MonoBehaviour
 
     private float previousHeight;
     private bool isFalling;
+
+    // Wall jump
+    private bool wallJumping;
+    public float xWallForce = 2f;
+    public float yWallForce = 2.5f;
+    public float wallJumpTime = 1f;
 
     void Update()
     {
@@ -47,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
-        //Rotation of the character
+        //Rotation and movement of the character
         if (x > 0)
         {
             transform.rotation = Quaternion.Euler(0, 90, 0);
@@ -61,23 +68,26 @@ public class PlayerMovement : MonoBehaviour
             move.z = 0;
         }
             
+        // Jumps
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
-        isFalling = previousHeight > transform.position.y;
+        CheckWallSliding(x);
 
-        if (isTouchingFront && !isGrounded && x != 0 && isFalling)
+        if (Input.GetButtonDown("Jump") && wallSliding)
         {
-            wallSliding = true;
-        }
-        else
-        {
-            wallSliding = false;
+            wallJumping = true;
+            Invoke("SetWallJumpingToFalse", wallJumpTime);
         }
 
-        if (wallSliding)
+        if (wallJumping)
+        {
+            move.x = xWallForce * -x;
+            velocity.y = Mathf.Sqrt(yWallForce * -2f * gravity);
+        }
+        else if (wallSliding)
         {
             velocity.y += wallSlidingSpeed * Time.deltaTime;
         }
@@ -88,5 +98,25 @@ public class PlayerMovement : MonoBehaviour
 
         previousHeight = transform.position.y;
         controller.Move((move * speed * Time.deltaTime) + velocity * Time.deltaTime);
+    }
+
+    // Checks whether the player is wall sliding or not
+    void CheckWallSliding(float x)
+    {
+        isFalling = previousHeight > transform.position.y;
+
+        if (isTouchingFront && !isGrounded && x != 0 && isFalling)
+        {
+            wallSliding = true;
+        }
+        else
+        {
+            wallSliding = false;
+        }
+    }
+
+    private void SetWallJumpingToFalse()
+    {
+        wallJumping = false;
     }
 }

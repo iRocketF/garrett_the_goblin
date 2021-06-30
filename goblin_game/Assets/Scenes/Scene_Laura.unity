@@ -295,6 +295,9 @@ MonoBehaviour:
   debug: 0
   frontCheck: {fileID: 0}
   wallSlidingSpeed: -6
+  xWallForce: 2
+  yWallForce: 2.5
+  wallJumpTime: 1
 --- !u!1 &187167077
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,6 +1378,18 @@ PrefabInstance:
     - target: {fileID: 402902228243678813, guid: d0f1d1e43dfd5ca42ba2eda5927733d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 402902228243678814, guid: d0f1d1e43dfd5ca42ba2eda5927733d2, type: 3}
+      propertyPath: xWallForce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 402902228243678814, guid: d0f1d1e43dfd5ca42ba2eda5927733d2, type: 3}
+      propertyPath: yWallForce
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 402902228243678814, guid: d0f1d1e43dfd5ca42ba2eda5927733d2, type: 3}
+      propertyPath: wallJumpTime
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0f1d1e43dfd5ca42ba2eda5927733d2, type: 3}
