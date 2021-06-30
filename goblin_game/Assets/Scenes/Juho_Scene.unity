@@ -1247,6 +1247,9 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  debug: 0
+  frontCheck: {fileID: 0}
+  wallSlidingSpeed: -6
 --- !u!1 &187167077
 GameObject:
   m_ObjectHideFlags: 0

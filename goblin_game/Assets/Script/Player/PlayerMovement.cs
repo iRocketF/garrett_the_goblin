@@ -21,6 +21,14 @@ public class PlayerMovement : MonoBehaviour
 
     public float debug;
 
+    private bool isTouchingFront;
+    public Transform frontCheck;
+    private bool wallSliding;
+    public float wallSlidingSpeed = -6;
+
+    private float previousHeight;
+    private bool isFalling;
+
     void Update()
     {
         UpdateMovement();
@@ -28,24 +36,29 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdateMovement()
     {
+        // Ground and front checks
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        isTouchingFront = Physics.CheckSphere(frontCheck.position, groundDistance, groundMask);
+
+        float x = Input.GetAxis("Horizontal");
 
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
 
-        float x = Input.GetAxis("Horizontal");
-
+        //Rotation of the character
         if (x > 0)
         {
             transform.rotation = Quaternion.Euler(0, 90, 0);
             move = transform.forward * x;
+            move.z = 0;
         }   
         else if (x < 0)
         {
             transform.rotation = Quaternion.Euler(0, -90, 0);
             move = -transform.forward * x;
+            move.z = 0;
         }
             
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -53,8 +66,27 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
-        velocity.y += gravity * Time.deltaTime;
+        isFalling = previousHeight > transform.position.y;
 
+        if (isTouchingFront && !isGrounded && x != 0 && isFalling)
+        {
+            wallSliding = true;
+        }
+        else
+        {
+            wallSliding = false;
+        }
+
+        if (wallSliding)
+        {
+            velocity.y += wallSlidingSpeed * Time.deltaTime;
+        }
+        else
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
+
+        previousHeight = transform.position.y;
         controller.Move((move * speed * Time.deltaTime) + velocity * Time.deltaTime);
     }
 }
