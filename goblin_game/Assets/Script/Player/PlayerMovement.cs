@@ -36,9 +36,17 @@ public class PlayerMovement : MonoBehaviour
     public float yWallForce = 2.5f;
     public float wallJumpTime = 1f;
 
+    [SerializeField] private Animator playerAnim;
+
+    private void Start()
+    {
+        playerAnim = GetComponentInChildren<Animator>();
+    }
+
     void Update()
     {
         UpdateMovement();
+        UpdateAnimations();
     }
 
     void UpdateMovement()
@@ -49,10 +57,12 @@ public class PlayerMovement : MonoBehaviour
 
         float x = Input.GetAxis("Horizontal");
 
+
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
+        
 
         //Rotation and movement of the character
         if (x > 0)
@@ -67,11 +77,13 @@ public class PlayerMovement : MonoBehaviour
             move = -transform.forward * x;
             move.z = 0;
         }
-            
+
         // Jumps
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            playerAnim.SetTrigger("jump");
+            //velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            Invoke("Jump", 0.5f);
         }
 
         CheckWallSliding(x);
@@ -107,10 +119,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (isTouchingFront && !isGrounded && x != 0 && isFalling)
         {
+            playerAnim.SetBool("isSliding", true);
             wallSliding = true;
         }
         else
         {
+            playerAnim.SetBool("isSliding", false);
             wallSliding = false;
         }
     }
@@ -118,5 +132,28 @@ public class PlayerMovement : MonoBehaviour
     private void SetWallJumpingToFalse()
     {
         wallJumping = false;
+    }
+
+    void UpdateAnimations()
+    {
+        if (Input.GetAxis("Horizontal") != 0 && isGrounded)
+        {
+            playerAnim.SetBool("isRunning", true);
+        }
+        else if (isGrounded)
+        {
+            playerAnim.SetBool("isRunning", false);
+            playerAnim.SetBool("isLanding", true);
+        }
+
+        if (!controller.isGrounded)
+        {
+            playerAnim.SetBool("isLanding", false);
+        }
+    }
+
+    void Jump()
+    {
+        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
     }
 }
