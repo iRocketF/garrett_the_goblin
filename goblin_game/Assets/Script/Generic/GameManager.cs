@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     private int mainMenu = 0;
     private int game = 1;
 
+    private bool isExitOpen = false;
+
     public static GameManager Instance
     {
         get
@@ -38,16 +40,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
     public void LoadMenu()
     {
         SceneManager.LoadScene(mainMenu);
@@ -56,5 +48,16 @@ public class GameManager : MonoBehaviour
     public void LoadGame()
     {
         SceneManager.LoadScene(game);
+    }
+
+    public void OpenTheExit()
+    {
+        isExitOpen = true;
+        Debug.Log("You opened the exit, hooray!");
+    }
+
+    public void FoundTheExit()
+    {
+        Debug.Log("You finished the game!");
     }
 }
