@@ -1402,6 +1402,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Collectible (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1693515585865875704, guid: b86ac4864235831428063b9553345a32, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1693515585865875705, guid: b86ac4864235831428063b9553345a32, type: 3}
       propertyPath: m_RootOrder
       value: 4

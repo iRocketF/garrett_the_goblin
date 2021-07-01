@@ -47,8 +47,8 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R) & isWon)
         {
-            ResetGame();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            ResetGame();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -64,19 +64,18 @@ public class GameManager : MonoBehaviour
 
     public void LoadGame()
     {
+        ResetGame();
         SceneManager.LoadScene(game);
     }
 
     public void OpenTheExit()
     {
         isExitOpen = true;
-        Debug.Log("You opened the exit, hooray!");
     }
 
     public void FoundTheExit()
     {
         isWon = true;
-        Debug.Log("You finished the game!");
     }
 
     public void ResetGame()

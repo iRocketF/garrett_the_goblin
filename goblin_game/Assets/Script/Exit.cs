@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour
 {
+    private void Start()
+    {
+        GameManager.Instance.isExitOpen = false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -14,5 +19,10 @@ public class Exit : MonoBehaviour
                 GameManager.Instance.FoundTheExit();
             }
         }
+    }
+
+    private void Update()
+    {
+        Debug.Log(GameManager.Instance.isExitOpen);
     }
 }

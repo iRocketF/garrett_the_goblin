@@ -11,7 +11,6 @@ public class CollectibleSystem : MonoBehaviour
     {
         Collectible[] collectibles = FindObjectsOfType<Collectible>();
         totalCollectiblesAmount = collectibles.Length;
-        Debug.Log(totalCollectiblesAmount);
     }
 
     void Update()
