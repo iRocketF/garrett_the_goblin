@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 402902228243678813}
   - component: {fileID: 402902228243678812}
   - component: {fileID: 402902228243678814}
+  - component: {fileID: 289302293}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -81,6 +82,18 @@ MonoBehaviour:
   yWallForce: 2
   wallJumpTime: 0.2
   playerAnim: {fileID: 0}
+--- !u!114 &289302293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402902228243678811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542aa42bf777a8942b71dcda58d4cf8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &402902228491426069
 GameObject:
   m_ObjectHideFlags: 0

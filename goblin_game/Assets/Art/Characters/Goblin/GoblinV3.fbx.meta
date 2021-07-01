@@ -24,7 +24,47 @@ ModelImporter:
   - first:
       74: 8827580441259452564
     second: Goblin_Hit_V3
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bandana_low
+    second: {fileID: 2100000, guid: 25f703e17eeba9846b5e50a5abc0ccf2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Belt_low
+    second: {fileID: 2100000, guid: db8d50d03d8ca7944b3e279662aa42e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Buckle_low
+    second: {fileID: 2100000, guid: b791352db0218a249a6a8b2a4171d3d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes_low
+    second: {fileID: 2100000, guid: 2d68b5d9fcaf3554c811fa3af1699529, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Goblin_low
+    second: {fileID: 2100000, guid: e3ae0c826dd41a44bae36c8c872838de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hands_low
+    second: {fileID: 2100000, guid: 4813fc755a2e0fa48b82f18ea57e9fc2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Legs_low
+    second: {fileID: 2100000, guid: edd40c26456dd8e46b2fb2ba22695594, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shirt_low
+    second: {fileID: 2100000, guid: 9beac4d8483b1ea4e8c8e3c93b9c5920, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

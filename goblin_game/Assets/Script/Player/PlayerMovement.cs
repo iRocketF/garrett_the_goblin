@@ -82,8 +82,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             playerAnim.SetTrigger("jump");
-            //velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            Invoke("Jump", 0.5f);
+            Invoke("Jump", 0.1f);
+            //Jump();
         }
 
         CheckWallSliding(x);
@@ -122,6 +122,11 @@ public class PlayerMovement : MonoBehaviour
             playerAnim.SetBool("isSliding", true);
             wallSliding = true;
         }
+        else if (!isTouchingFront && !isGrounded && x != 0 && isFalling)
+        {
+            playerAnim.SetTrigger("fall");
+            wallSliding = false;
+        }
         else
         {
             playerAnim.SetBool("isSliding", false);
@@ -138,6 +143,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetAxis("Horizontal") != 0 && isGrounded)
         {
+            playerAnim.SetBool("isLanding", true);
             playerAnim.SetBool("isRunning", true);
         }
         else if (isGrounded)
@@ -149,6 +155,15 @@ public class PlayerMovement : MonoBehaviour
         if (!controller.isGrounded)
         {
             playerAnim.SetBool("isLanding", false);
+        }
+
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            playerAnim.SetBool("isIdle", false);
+        }
+        else
+        {
+            playerAnim.SetBool("isIdle", true);
         }
     }
 

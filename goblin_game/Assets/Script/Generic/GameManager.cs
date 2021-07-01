@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     private int mainMenu = 0;
     private int game = 1;
 
+    public bool isExitOpen = false;
+    public bool isWon = false;
+
     public static GameManager Instance
     {
         get
@@ -36,16 +39,22 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+
+        ResetGame();
     }
 
-    void Start()
+    private void Update()
     {
-        
-    }
+        if (Input.GetKeyDown(KeyCode.R) & isWon)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            ResetGame();
+        }
 
-    void Update()
-    {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LoadMenu();
+        }
     }
 
     public void LoadMenu()
@@ -55,6 +64,23 @@ public class GameManager : MonoBehaviour
 
     public void LoadGame()
     {
+        ResetGame();
         SceneManager.LoadScene(game);
+    }
+
+    public void OpenTheExit()
+    {
+        isExitOpen = true;
+    }
+
+    public void FoundTheExit()
+    {
+        isWon = true;
+    }
+
+    public void ResetGame()
+    {
+        isExitOpen = false;
+        isWon = false;
     }
 }
