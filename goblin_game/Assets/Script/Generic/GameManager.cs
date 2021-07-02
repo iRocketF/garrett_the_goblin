@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public bool isExitOpen = false;
     public bool isWon = false;
+    public bool isLost = false;
 
     public static GameManager Instance
     {
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+
         if (instance == null)
         {
             instance = this;
@@ -45,9 +47,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) & isWon)
+        if (Input.GetKeyDown(KeyCode.R) && (isWon || isLost))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             ResetGame();
         }
 
@@ -80,7 +81,15 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        isExitOpen = false;
         isWon = false;
+        isLost = false;
+        isExitOpen = false;
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void LoseGame()
+    {
+        isLost = true;
     }
 }
