@@ -41,6 +41,7 @@ public class Health : MonoBehaviour
         {
             isPlayerAlive = false;
             manager.LoseGame();
+            Destroy(gameObject);
         }
     }
 
