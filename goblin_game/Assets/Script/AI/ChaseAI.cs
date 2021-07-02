@@ -12,10 +12,12 @@ public class ChaseAI : MonoBehaviour
 
     private string currentState;
     private Transform target;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         currentState = "IdleState";
         ogSpeed = speed;
@@ -29,6 +31,9 @@ public class ChaseAI : MonoBehaviour
         switch (currentState)
         {
             case "IdleState":
+
+                animator.SetBool("isWalking", false);
+
                 if (distance < chaseRange)
                     currentState = "ChaseState";
                 break;
@@ -40,7 +45,9 @@ public class ChaseAI : MonoBehaviour
 
                     CheckForBlock();
 
+                    animator.SetBool("isWalking", true);
                     transform.Translate(-transform.right * speed * Time.deltaTime);
+                    
 
                     if (distance > chaseRange)
                         currentState = "IdleState";
@@ -51,6 +58,7 @@ public class ChaseAI : MonoBehaviour
 
                     CheckForBlock();
 
+                    animator.SetBool("isWalking", true);
                     transform.Translate(transform.right * speed * Time.deltaTime);
 
                     if (distance > chaseRange)

@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Script/Scenes/MainMenu.unity
     guid: c03576f8bff91a640947ca411197e84e
   - enabled: 1
-    path: Assets/Scenes/Scene_Laura.unity
+    path: Assets/Script/Scenes/Scene_Laura.unity
     guid: 759cb38aed3d01f49977755c33216eec
   m_configObjects: {}
