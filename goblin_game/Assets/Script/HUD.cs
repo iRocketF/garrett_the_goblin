@@ -13,6 +13,10 @@ public class HUD : MonoBehaviour
         {
             gameEndText.text = "Congratulations, you have won the game! Press R to restart or ESC to exit";
         }
+        else if (GameManager.Instance.isLost)
+        {
+            gameEndText.text = "You died, press R to restart";
+        }
         else
         {
             gameEndText.text = " ";
